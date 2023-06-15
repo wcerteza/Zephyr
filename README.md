@@ -14,6 +14,8 @@
 
 #### [Kendal Chaney](https://github.com/lamarman808)
 
+##### add git hub links seperate?
+
 ---
 
 ### **_Description_**
