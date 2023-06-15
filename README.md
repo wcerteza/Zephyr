@@ -14,8 +14,6 @@
 
 #### [Kendal Chaney](https://github.com/lamarman808)
 
-##### add git hub links seperate?
-
 ---
 
 ### **_Description_**
@@ -35,6 +33,12 @@ Zephyr is a cutting-edge alternative to traditional online forums, revolutionizi
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+
+---
+
+### **_Entity Relationship Diagram_**
+
+![](images/ERD.png)
 
 ---
 
