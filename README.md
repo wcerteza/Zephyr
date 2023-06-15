@@ -38,11 +38,29 @@ Zephyr is a cutting-edge alternative to traditional online forums, revolutionizi
 
 ### **_WireFrame_**
 
+![](images/wireframe.jpeg)
+
 ### **_Completed Website_**
 
 ---
 
-### **_Getting Started_**
+### **_Production Goals_**
+
+#### 1. Include a minimum of 3 Django Models, and have full CRUD operations on at least one of them.
+
+#### 2. Implement User Authentication utilizing protected routes.
+
+#### 3. Deploy Zephyr to a hosting production environment.
+
+---
+
+### **_Future Goals_**
+
+#### 1. Allow users to upvote or like various posts, providing feedback and promoting quality content.
+
+#### 2.Implement a private chat feature, allowing individual users to engage in private conversations.
+
+#### 3. Develop additional features within Zephyrs, such as the ability to create sub-zephyrs or topic-specific communities, providing users with more specialized discussions and content.
 
 ---
 
