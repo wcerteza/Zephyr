@@ -36,6 +36,12 @@ Zephyr is a cutting-edge alternative to traditional online forums, revolutionizi
 
 ---
 
+### **_Links_**
+
+#### [Trello](https://trello.com/b/pyqT9my7/zephyr)
+
+#### [Pitch Deck](https://www.figma.com/file/dhFt9fPjhOFSCzPvjIc49H/Zephyr-Pitch-Deck?type=design&node-id=0%3A1&t=jpPi6djm3mNODYcP-1)
+
 ### **_Entity Relationship Diagram_**
 
 ![](images/ERD.png)
