@@ -44,7 +44,9 @@ Zephyr is a cutting-edge alternative to traditional online forums, revolutionizi
 
 ### **_WireFrame_**
 
-![](images/wireframe.jpeg)
+![](images/zephyr1.png)
+![](images/zephyr2.png)
+![](images/zephyr3.png)
 
 ### **_Completed Website_**
 
