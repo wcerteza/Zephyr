@@ -3,6 +3,7 @@ from .models import Post
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from .forms import PostForm
+from django.urls import reverse_lazy
 
 
 def stream(request):
@@ -22,3 +23,8 @@ def stream(request):
 class PostCreate(CreateView):
     model = Post
     fields = ["title", "content"]
+    success_url = reverse_lazy("stream")
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)

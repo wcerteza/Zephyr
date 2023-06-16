@@ -1,15 +1,13 @@
-{% extends 'base.html' %}
-{% load static %}
-
-{% block content %}
+{% extends 'base.html' %} {% load static %} {% block content %}
 <div class="container">
-
   <div class="row">
-
     <div class="col l3">
-
-      <img src="{% static 'images/Zephyr-Web.png' %}" class="responsive-img" alt="">
-      <hr>
+      <img
+        src="{% static 'images/Zephyr-Web.png' %}"
+        class="responsive-img"
+        alt=""
+      />
+      <hr />
       <div class="user-card">
         <div class="user-profile"></div>
         <div class="user-names">
@@ -19,31 +17,21 @@
       </div>
 
       <form action="{% url 'post_create' %}" method="POST">
-
-        {% csrf_token %}
-        {{ posts_form.as_p }}
-        <input type="submit" class="btn" value="Post">
+        {% csrf_token %} {{ posts_form.as_p }}
+        <input type="submit" class="btn" value="Post" />
       </form>
-
     </div>
 
     <div class="col l6 blue-grey darken-2">
 
-
-      <h1>Hello</h1>
-
       {% for post in posts %}
       <h2>{{ post.user }}</h2>
-      <p>
-        {{ post.title }}
-      </p>
+      <p>{{ post.title }}</p>
       <p>{{ post.content }}</p>
       <p>{{ post.created_at }}</p>
 
       {% endfor %}
-
     </div>
-
     <div class="col l3">
       <ul>
         <li>test1</li>
@@ -53,6 +41,8 @@
       <p>Login to follow profiles or hashtags, favourite, share and reply to posts. You can also interact from your
         account on a different server.</p>
     </div>
+  </div>
+</div>
   </div>
 </div>
 {% endblock %}
