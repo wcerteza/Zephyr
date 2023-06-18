@@ -38,6 +38,14 @@ def posts_detail(request, post_id):
     return render(request, "posts/detail.html", {"post": post})
 
 
+class PostUpdate(UpdateView):
+    model = Post
+    fields = ["title", "content"]
+
+class PostDelete(DeleteView):
+    model = Post
+    success_url = "/"
+
 def signup(request):
     error_message = ""
     if request.method == "POST":
