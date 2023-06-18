@@ -23,10 +23,10 @@
       </form>
 
 
-        <a href="{% url 'logout' %}"><div>Log Out</div></a>
+        <a href="{% url 'logout' %}" class="logoutbtn"><div>Log Out</div></a>
       {% else %}
-        <a href="{% url 'signup' %}"><div>Create Account</div></a>
-        <a href="{% url 'login' %}"><div>Login</div></a>
+        <a href="{% url 'signup' %}" class="signupbtn"><div>Create Account</div></a>
+        <a href="{% url 'login' %}" class="loginbtn"><div>Login</div></a>
       {% endif %}
 
     </div>

@@ -45,3 +45,44 @@ ul {
   display: flex;
   flex-direction: column;
 }
+
+.logoutbtn {
+  font-weight: 600;
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  border: solid;
+  border-color: #4D4DFF;
+  border-radius: 10px;
+  padding: 10px;
+  width: 250x;
+  height: 45px;
+  color: #4D4DFF
+}
+
+.signupbtn {
+  font-weight: 600;
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  background-color: #4D4DFF;
+  border-radius: 10px;
+  padding: 10px;
+  width: 250x;
+  height: 45px;
+  color: white
+}
+
+.loginbtn {
+  font-weight: 600;
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  border: solid;
+  border-color: #4D4DFF;
+  border-radius: 10px;
+  padding: 10px;
+  width: 250x;
+  height: 45px;
+  color: #4D4DFF
+}
