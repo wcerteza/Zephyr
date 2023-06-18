@@ -8,6 +8,7 @@
         alt=""
       />
       <hr />
+      {% if user.is_authenticated %}
       <div class="user-card">
         <div class="user-profile"></div>
         <div class="user-names">
@@ -20,6 +21,14 @@
         {% csrf_token %} {{ posts_form.as_p }}
         <input type="submit" class="btn" value="Post" />
       </form>
+
+
+        <a href="{% url 'logout' %}"><div>Log Out</div></a>
+      {% else %}
+        <a href="{% url 'signup' %}"><div>Create Account</div></a>
+        <a href="{% url 'login' %}"><div>Login</div></a>
+      {% endif %}
+
     </div>
 
     <div class="col l6 blue-grey darken-2">
