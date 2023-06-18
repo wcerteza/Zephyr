@@ -27,6 +27,9 @@ class Post(models.Model):
     class Meta:
         ordering = ["-updated_at"]
 
+    def get_absolute_url(self):
+        return reverse('detail', kwargs={'post_id': self.id})
+
 
 class Attachment(models.Model):
     url = models.CharField(max_length=200)

@@ -6,9 +6,11 @@
   <p>{{ post.content }}</p>
   <p>{{ post.created_at }}</p>
 </div>
-
+{% if user.is_authenticated %}
 <div class="card-action">
   <a href="{% url 'posts_update' post.id %}">Edit</a>
   <a href="{% url 'posts_delete' post.id %}">Delete</a>
 </div>
+{% else %}
+{% endif %}
 {% endblock %}
