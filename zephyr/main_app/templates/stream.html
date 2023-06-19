@@ -1,58 +1,13 @@
-{% extends 'base.html' %} {% load static %} {% block content %}
-<div class="container">
-  <div class="row">
-    <div class="col l3">
-      <img
-        src="{% static 'images/Zephyr-Web.png' %}"
-        class="responsive-img"
-        alt=""
-      />
-      <hr />
-      {% if user.is_authenticated %}
-      <div class="user-card">
-        <div class="user-profile"></div>
-        <div class="user-names">
-          <h6>Display Name</h6>
-          <h7>@Username</h7>
-        </div>
-      </div>
-
-      <form action="{% url 'post_create' %}" method="POST">
-        {% csrf_token %} {{ posts_form.as_p }}
-        <input type="submit" class="btn" value="Post" />
-      </form>
+{% extends 'posts_base.html' %} {% load static %} {% block content %}
+{% for post in posts %}
+<a href="{% url 'detail' post.id %}">
 
 
-        <a href="{% url 'logout' %}" class="logoutbtn"><div>Log Out</div></a>
-      {% else %}
-        <a href="{% url 'signup' %}" class="signupbtn"><div>Create Account</div></a>
-        <a href="{% url 'login' %}" class="loginbtn"><div>Login</div></a>
-      {% endif %}
+  <h2>{{ post.user }}</h2>
+  <p>{{ post.title }}</p>
+  <p>{{ post.content }}</p>
+  <p>{{ post.created_at }}</p>
 
-    </div>
-    {% for post in posts %}
-    <a href="{% url 'detail' post.id %}">
-      <div class="col l6 blue-grey darken-2">
+  {% endfor %}
 
-        <h2>{{ post.user }}</h2>
-        <p>{{ post.title }}</p>
-        <p>{{ post.content }}</p>
-        <p>{{ post.created_at }}</p>
-
-        {% endfor %}
-      </div>
-    </a>
-    <div class="col l3">
-      <ul>
-        <li>test1</li>
-        <li>test2</li>
-        <li>test3</li>
-      </ul>
-      <p>Login to follow profiles or hashtags, favourite, share and reply to posts. You can also interact from your
-        account on a different server.</p>
-    </div>
-  </div>
-</div>
-  </div>
-</div>
-{% endblock %}
+  {% endblock %}
