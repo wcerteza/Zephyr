@@ -28,7 +28,7 @@ class Post(models.Model):
         ordering = ["-updated_at"]
 
     def get_absolute_url(self):
-        return reverse('detail', kwargs={'post_id': self.id})
+        return reverse("detail", kwargs={"post_id": self.id})
 
 
 class Attachment(models.Model):
