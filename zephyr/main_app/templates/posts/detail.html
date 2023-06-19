@@ -10,6 +10,16 @@
   <a href="{% url 'posts_update' post.id %}">Edit</a>
   <a href="{% url 'posts_delete' post.id %}">Delete</a>
 </div>
-{% else %}
-{% endif %}
-{% endblock %}
+
+<form method="post" action="{% url 'comment_create' post.id %}">
+  {% csrf_token %}
+  <textarea name="content" rows="4" cols="50"></textarea>
+  <br />
+  <button type="submit">Submit</button>
+</form>
+
+{% for comment in post.comment_set.all %}
+<p>{{ comment.user }}</p>
+<p>{{ comment.content }}</p>
+<p>{{ comment.created_at }}</p>
+{% endfor %} {% else %} {% endif %} {% endblock %}
