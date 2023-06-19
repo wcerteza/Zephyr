@@ -15,17 +15,17 @@
 <body>
   <div class="container">
     <div class="row">
-      <div class="col l3">
+      <div class="col l3" id="sticky-left">
         <a href="/">
           <img src="{% static 'images/Zephyr-Web.png' %}" class="responsive-img" alt="" />
         </a>
         <hr />
         {% if user.is_authenticated %}
-        <div class="user-card">
-          <div class="user-profile"></div>
+        <div class="user_info">
+          <div class="user-avatar"></div>
           <div class="user-names">
-            <h6>{{ user.username }}</h6>
-            <h7>{{ user.email }}</h7>
+            <span class="username">{{ user.username }}</span>
+            <span class="displayname">{{ user.email }}</span>
           </div>
         </div>
 
@@ -48,7 +48,6 @@
           <div>Login</div>
         </a>
         {% endif %}
-
       </div>
       <div class="col l6 blue-grey darken-2">
         {% block content %} {% endblock %}

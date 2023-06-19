@@ -1,13 +1,38 @@
-{% extends 'posts_base.html' %} {% load static %} {% block content %}
+{% extends 'posts_base.html' %} {% load static %} {% load humanize %} {% block content %}
+
 {% for post in posts %}
 <a href="{% url 'detail' post.id %}">
+  <div class="post">
+    <div class="post-info">
+      <p class="post_relative-time">{{ post.updated_at|naturaltime }}</p>
+      <div class="user_info">
+        <div class="user-avatar"></div>
+        <div class="user-names">
+          <span class="username">{{ post.user }}</span>
+          <span class="displayname">{{ post.user.email }}</span>
+        </div>
+      </div>
+    </div>
+    <p>{{ post.title }}</p>
+  </div>
+</a>
+<div class="action-bar">
+  {% if user.is_authenticated and user.id == post.user.id %}
+  <a href="{% url 'comment_create' post.id %}" class="post-action"><i class="fa-solid fa-comment"></i></a>
+  <i class="fa-solid fa-heart"></i>
+  <i class="fa-solid fa-pen-to-square"></i>
+  <i class="fa-solid fa-trash"></i>
+  {% elif user.is_authenticated %}
+  <i class="fa-solid fa-comment"></i>
+  <i class="fa-solid fa-heart"></i>
+  <i class="fa-solid fa-pen-to-square" style="color: var(--hr-color);"></i>
+  <i class="fa-solid fa-trash" style="color: var(--hr-color);"></i>
+  {% endif %}
+</div>
 
 
-  <h2>{{ post.user }}</h2>
-  <p>{{ post.title }}</p>
-  <p>{{ post.content }}</p>
-  <p>{{ post.created_at }}</p>
+<hr>
 
-  {% endfor %}
+{% endfor %}
 
-  {% endblock %}
+{% endblock %}
