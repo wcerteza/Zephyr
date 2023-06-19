@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
-from .models import Post
+from .models import Post, Comment
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
-from .forms import PostForm, CustomUserCreationForm
+from .forms import PostForm, CustomUserCreationForm, CommentForm
 from django.urls import reverse_lazy
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -72,3 +72,21 @@ def signup(request):
         form = CustomUserCreationForm()
     context = {"form": form, "error_message": error_message}
     return render(request, "registration/signup.html", context)
+
+
+def comment_create(request, post_id):
+    post = Post.objects.get(id=post_id)
+    form = CommentForm(request.POST)
+
+    if form.is_valid():
+        comment = form.save(commit=False)
+        comment.post = post
+        comment.user = request.user
+        comment.save()
+        form = CommentForm()
+
+    return render(
+        request,
+        "posts/detail.html",
+        {"post": post, "form": form, "comment": comment},
+    )
