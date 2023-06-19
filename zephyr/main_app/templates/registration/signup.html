@@ -1,5 +1,4 @@
-{% extends 'base.html' %} {% block content %}
-
+{% extends 'accounts_base.html' %} {% load static %} {% block content %}
 <h1>Create Account</h1>
 
 <p class="red-text">{{error_message}}</p>
@@ -8,5 +7,4 @@
   {% csrf_token %} {{ form.as_p }}
   <button type="submit" class="btn">Create</button>
 </form>
-
 {% endblock %}

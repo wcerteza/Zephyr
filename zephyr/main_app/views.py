@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Post
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
-from .forms import PostForm
+from .forms import PostForm, CustomUserCreationForm
 from django.urls import reverse_lazy
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -35,27 +35,40 @@ class PostCreate(CreateView):
 
 def posts_detail(request, post_id):
     post = Post.objects.get(id=post_id)
-    return render(request, "posts/detail.html", {"post": post})
+    posts_form = PostForm()
+    title = f'{post.user}:"{post.title}"'
+    return render(
+        request,
+        "posts/detail.html",
+        {
+            "post": post,
+            "title": title,
+            "posts_form": posts_form,
+        },
+    )
 
 
 class PostUpdate(UpdateView):
     model = Post
     fields = ["title", "content"]
 
+
 class PostDelete(DeleteView):
     model = Post
     success_url = "/"
 
+
 def signup(request):
     error_message = ""
     if request.method == "POST":
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
             return redirect("/")
         else:
-            error_message = "invalid signup, try again!"
-    form = UserCreationForm()
+            error_message = "Invalid signup, please try again!"
+    else:
+        form = CustomUserCreationForm()
     context = {"form": form, "error_message": error_message}
     return render(request, "registration/signup.html", context)

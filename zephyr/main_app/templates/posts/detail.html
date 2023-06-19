@@ -1,12 +1,11 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'posts_base.html' %} {% block content %}
 
-<div class="col l6 blue-grey darken-2">
-  <h2>{{ post.user }}</h2>
-  <p>{{ post.title }}</p>
-  <p>{{ post.content }}</p>
-  <p>{{ post.created_at }}</p>
-</div>
-{% if user.is_authenticated %}
+<h2>{{ post.user }}</h2>
+<p>{{ post.title }}</p>
+<p>{{ post.content }}</p>
+<p>{{ post.created_at }}</p>
+
+{% if user.is_authenticated and user.id == post.user.id %}
 <div class="card-action">
   <a href="{% url 'posts_update' post.id %}">Edit</a>
   <a href="{% url 'posts_delete' post.id %}">Delete</a>

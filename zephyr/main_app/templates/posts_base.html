@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ title }}</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col l3">
+        <a href="/">
+          <img src="{% static 'images/Zephyr-Web.png' %}" class="responsive-img" alt="" />
+        </a>
+        <hr />
+        {% if user.is_authenticated %}
+        <div class="user-card">
+          <div class="user-profile"></div>
+          <div class="user-names">
+            <h6>{{ user.username }}</h6>
+            <h7>{{ user.email }}</h7>
+          </div>
+        </div>
+
+        <div>
+          <form action="{% url 'post_create' %}" method="POST">
+            {% csrf_token %} {{ posts_form.as_p }}
+            <input type="submit" class="btn" value="Post" />
+          </form>
+        </div>
+
+
+        <a href="{% url 'logout' %}" class="logoutbtn">
+          <div>Log Out</div>
+        </a>
+        {% else %}
+        <a href="{% url 'signup' %}" class="signupbtn">
+          <div>Create Account</div>
+        </a>
+        <a href="{% url 'login' %}" class="loginbtn">
+          <div>Login</div>
+        </a>
+        {% endif %}
+
+      </div>
+      <div class="col l6 blue-grey darken-2">
+        {% block content %} {% endblock %}
+      </div>
+      </a>
+      <div class="col l3">
+        <ul>
+          <li>test1</li>
+          <li>test2</li>
+          <li>test3</li>
+        </ul>
+        <p>Login to follow profiles or hashtags, favourite, share and reply to posts. You can also interact from your
+          account on a different server.</p>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
