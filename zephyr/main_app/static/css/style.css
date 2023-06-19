@@ -4,7 +4,8 @@
   --stream-bg-color: #455a64;
   --main-font-color: white;
   --sec-font-color: rgba(255, 255, 255, 0.4);
-  --hr-color: rgba(255, 255, 255, 0.2)
+  --hr-color: rgba(255, 255, 255, 0.2);
+  --comments-section-bg-color: #37474f;
 }
 
 body {
@@ -13,6 +14,16 @@ body {
   flex-direction: column;
   background-color: var(--main-bg-color);
   color: var(--main-font-color);
+}
+
+#sticky-left, #sticky-right {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0px;
+}
+
+#stream {
+  padding: 0px;
 }
 
 .row {
@@ -133,6 +144,7 @@ hr {
 
 .post {
   margin: 24px auto;
+  padding: 0px 20px;
   color: white;
 }
 
@@ -146,4 +158,14 @@ hr {
 
 .detail-meta {
   font-size: 13px;
+}
+
+.comment-section {
+  background-color: var(--comments-section-bg-color);
+  padding: 20px;
+}
+
+.comment {
+  margin: 24px auto;
+  color: white;
 }

@@ -1,47 +1,74 @@
 {% extends 'posts_base.html' %} {% load humanize %} {% block content %}
 
-<a href="{% url 'detail' post.id %}">
-  <div class="post">
-    <div class="post-info">
-      <p class="post_relative-time">{{ post.updated_at|naturaltime }}</p>
-      <div class="user_info">
-        <div class="user-avatar"></div>
-        <div class="user-names">
-          <span class="username">{{ post.user }}</span>
-          <span class="displayname">{{ post.user.email }}</span>
-        </div>
+<div class="post">
+  <div class="post-info">
+    <p class="post_relative-time">{{ post.updated_at|naturaltime }}</p>
+    <div class="user_info">
+      <div class="user-avatar"></div>
+      <div class="user-names">
+        <span class="username">{{ post.user }}</span>
+        <span class="displayname">{{ post.user.email }}</span>
       </div>
     </div>
-    <p>{{ post.title }}</p>
-    <div class="detail-meta">
-      <p class="post_relative-time">Created {{ post.created_at|naturaltime }}. Last updated at
-        {{ post.updated_at|naturaltime }}</p>
-    </div>
   </div>
-</a>
+  <p>{{ post.title }}</p>
+  <div class="detail-meta">
+    <p class="post_relative-time">Created {{ post.created_at|naturaltime }}. Last updated at
+      {{ post.updated_at|naturaltime }}</p>
+  </div>
 
-{% if user.is_authenticated and user.id == post.user.id %}
-<div class="card-action">
-  <a href="{% url 'posts_update' post.id %}">Edit</a>
-  <a href="{% url 'posts_delete' post.id %}">Delete</a>
+  {% if user.is_authenticated and user.id == post.user.id %}
+  <div class="card-action">
+    <a href="{% url 'posts_update' post.id %}">Edit</a>
+    <a href="{% url 'posts_delete' post.id %}">Delete</a>
+  </div>
+  {% endif %}
 </div>
-{% endif %}
 
-{% if user.is_authenticated %}
-<form method="post" action="{% url 'comment_create' post.id %}">
-  {% csrf_token %}
-  <textarea name="content" rows="4" cols="50"></textarea>
-  <br />
-  <button type="submit">Submit</button>
-</form>
-{% endif %}
+
 
 <div class="comment-section">
 
+  {% if user.is_authenticated %}
+  <form method="post" action="{% url 'comment_create' post.id %}">
+    {% csrf_token %}
+    <textarea name="content" rows="4" cols="50" placeholder="Have any thoughts on this post?"></textarea>
+    <br />
+    <button type="submit">Submit</button>
+  </form>
+  {% endif %}
+
   {% for comment in post.comment_set.all %}
-  <p>{{ comment.user }}</p>
-  <p>{{ comment.content }}</p>
-  <p>{{ comment.created_at }}</p>
+
+  <a href="{% url 'detail' post.id %}">
+    <div class="comment">
+      <div class="post-info">
+        <p class="post_relative-time">{{ comment.created_at|naturaltime }}</p>
+        <div class="user_info">
+          <div class="user-avatar"></div>
+          <div class="user-names">
+            <span class="username">{{ comment.user }}</span>
+            <span class="displayname">{{ comment.user.email }}</span>
+          </div>
+        </div>
+      </div>
+      <p>{{ comment.content }}</p>
+    </div>
+  </a>
+  <div class="action-bar">
+    {% if user.is_authenticated and user.id == post.user.id %}
+    <a href="{% url 'comment_create' post.id %}" class="post-action"><i class="fa-solid fa-comment"></i></a>
+    <i class="fa-solid fa-heart"></i>
+    <i class="fa-solid fa-pen-to-square"></i>
+    <i class="fa-solid fa-trash"></i>
+    {% elif user.is_authenticated %}
+    <i class="fa-solid fa-comment"></i>
+    <i class="fa-solid fa-heart"></i>
+    <i class="fa-solid fa-pen-to-square" style="color: var(--hr-color);"></i>
+    <i class="fa-solid fa-trash" style="color: var(--hr-color);"></i>
+    {% endif %}
+  </div>
+  <hr>
   {% endfor %}
 
 </div>
