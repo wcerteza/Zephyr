@@ -19,10 +19,17 @@ class Post(models.Model):
     content = models.TextField(max_length=160)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    liked = models.ManyToManyField(
+        User, default=None, blank=True, related_name="liked_posts"
+    )
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="posts")
 
     def __str__(self):
         return f"{self.title}({self.id}) at {self.created_at}"
+
+    @property
+    def num_likes(self):
+        return self.liked.all().count()
 
     class Meta:
         ordering = ["-updated_at"]
@@ -42,9 +49,16 @@ class Attachment(models.Model):
         return f"Attachment for post_id: {self.post_id} @{self.url}"
 
 
+LIKE_CHOICES = (
+    ("Like", "Like"),
+    ("Unlike", "Unlike"),
+)
+
+
 class Like(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey("Post", on_delete=models.CASCADE)
+    value = models.CharField(choices=LIKE_CHOICES, default="Like", max_length=10)
 
     def __str__(self):
         return f"{self.user} liked {self.post}"

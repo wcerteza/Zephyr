@@ -1,5 +1,9 @@
-{% extends 'posts_base.html' %} {% load static %} {% load humanize %}
-<!-- fdfdfddfdfdfdfdfdfdfdfdfdfddfdfdfdddufdsufopjdshfopdshfopdhfpodhfpodhpdohphdont move this shit to the next line please-->
+{% extends 'posts_base.html' %} 
+<!-- ## -->
+{% load static %} 
+<!-- ## -->
+{% load humanize %}
+<!-- ## -->
 {% block content %} {% for post in posts %}
 <a href="{% url 'detail' post.id %}">
   <div class="post">
@@ -16,6 +20,18 @@
     <p>{{ post.title }}</p>
   </div>
 </a>
+
+<form action="{% url 'like_post' %}?post_id={{ post.id }}" method="POST">
+  {% csrf_token %}
+  <input type='hidden' name='post_id' value="{{ post.id }}">
+  {% if user not in post.liked.all %}
+  <button type='submit'>Like</button>
+  {% else %}
+  <button type='submit'>Unlike</button>
+  {% endif %}
+</form>
+
+<strong>{{ post.liked.all.count }} likes</strong>
 <div class="action-bar">
   {% if user.is_authenticated and user.id == post.user.id %}
   <a href="{% url 'comment_create' post.id %}" class="post-action"
