@@ -1,6 +1,6 @@
-{% extends 'posts_base.html' %} {% load static %} {% load humanize %} {% block content %}
-
-{% for post in posts %}
+{% extends 'posts_base.html' %} {% load static %} {% load humanize %}
+<!-- fdfdfddfdfdfdfdfdfdfdfdfdfddfdfdfdddufdsufopjdshfopdshfopdhfpodhfpodhpdohphdont move this shit to the next line please-->
+{% block content %} {% for post in posts %}
 <a href="{% url 'detail' post.id %}">
   <div class="post">
     <div class="post-info">
@@ -18,21 +18,18 @@
 </a>
 <div class="action-bar">
   {% if user.is_authenticated and user.id == post.user.id %}
-  <a href="{% url 'comment_create' post.id %}" class="post-action"><i class="fa-solid fa-comment"></i></a>
+  <a href="{% url 'comment_create' post.id %}" class="post-action"
+    ><i class="fa-solid fa-comment"></i
+  ></a>
   <i class="fa-solid fa-heart"></i>
   <i class="fa-solid fa-pen-to-square"></i>
   <i class="fa-solid fa-trash"></i>
   {% elif user.is_authenticated %}
   <i class="fa-solid fa-comment"></i>
   <i class="fa-solid fa-heart"></i>
-  <i class="fa-solid fa-pen-to-square" style="color: var(--hr-color);"></i>
-  <i class="fa-solid fa-trash" style="color: var(--hr-color);"></i>
+  <i class="fa-solid fa-pen-to-square" style="color: var(--hr-color)"></i>
+  <i class="fa-solid fa-trash" style="color: var(--hr-color)"></i>
   {% endif %}
 </div>
-
-
-<hr>
-
-{% endfor %}
-
-{% endblock %}
+<hr />
+{% endfor %} {% endblock %}
