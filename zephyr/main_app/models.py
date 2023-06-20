@@ -22,7 +22,7 @@ class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.title}({self.id}) at {self.created_at}"
+        return f"{self.title}({self.id}) at {self.created_at} {self.user}"
 
     class Meta:
         ordering = ["-updated_at"]

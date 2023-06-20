@@ -23,4 +23,5 @@ urlpatterns = [
         views.post_add_attachment,
         name="post_add_attachment",
     ),
+    path("profile/", views.user_profile, name="profile"),
 ]
