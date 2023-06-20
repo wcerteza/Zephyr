@@ -34,9 +34,7 @@
 <strong>{{ post.liked.all.count }} likes</strong>
 <div class="action-bar">
   {% if user.is_authenticated and user.id == post.user.id %}
-  <a href="{% url 'comment_create' post.id %}" class="post-action"
-    ><i class="fa-solid fa-comment"></i
-  ></a>
+  <a href="{% url 'detail' post.id  %}" class="post-action"><i class="fa-solid fa-comment"></i></a>
   <i class="fa-solid fa-heart"></i>
   <i class="fa-solid fa-pen-to-square"></i>
   <i class="fa-solid fa-trash"></i>

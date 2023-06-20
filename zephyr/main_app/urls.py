@@ -24,4 +24,5 @@ urlpatterns = [
         name="post_add_attachment",
     ),
     path("like/", views.like_post, name="like_post"),
+    path("profile/", views.user_profile, name="profile"),
 ]

@@ -135,3 +135,9 @@ def like_post(request):
 
         like.save()
     return redirect("/")
+
+
+@login_required
+def user_profile(request):
+    posts = Post.objects.filter(user=request.user)
+    return render(request, "user/user_profile.html", {"posts": posts})

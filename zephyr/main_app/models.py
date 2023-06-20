@@ -25,7 +25,7 @@ class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="posts")
 
     def __str__(self):
-        return f"{self.title}({self.id}) at {self.created_at}"
+        return f"{self.title}({self.id}) at {self.created_at} {self.user}"
 
     @property
     def num_likes(self):
