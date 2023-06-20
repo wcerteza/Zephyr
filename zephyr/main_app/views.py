@@ -1,5 +1,8 @@
+import os
+import uuid
+import boto3
 from django.shortcuts import render, redirect
-from .models import Post, Comment
+from .models import Post, Comment, Attachment
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from .forms import PostForm, CustomUserCreationForm, CommentForm
@@ -90,3 +93,22 @@ def comment_create(request, post_id):
         "posts/detail.html",
         {"post": post, "form": form, "comment": comment},
     )
+
+
+def post_add_attachment(request, post_id):
+    attachment_file = request.FILES.get("photo-file", None)
+    if attachment_file:
+        s3 = boto3.client("s3")
+        key = (
+            uuid.uuid4().hex[:6]
+            + attachment_file_file.name[attachment_file_file.name.rfind(".") :]
+        )
+        try:
+            bucket = os.environ["S3_BUCKET"]
+            s3.upload_fileobj(photo_file, bucket, key)
+            url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
+            Attachment.objects.create(url=url, post_id=[post_id])
+        except Exception as e:
+            print("An error occurred uploading file to S3")
+            print(e)
+    return redirect("detail", post_id=post_id)

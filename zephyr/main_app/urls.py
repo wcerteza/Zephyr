@@ -17,4 +17,10 @@ urlpatterns = [
         views.comment_create,
         name="comment_create",
     ),
+    # Attachments
+    path(
+        "posts/<int:post_id/add_attachment",
+        views.post_add_attachment,
+        name="post_add_attachment",
+    ),
 ]
