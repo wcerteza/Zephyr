@@ -169,3 +169,13 @@ hr {
   margin: 24px auto;
   color: white;
 }
+
+.heart {
+  background-color: transparent;
+  color: white;
+  border: none;
+}
+
+.fa-heart {
+  margin-right: 5px;
+}
