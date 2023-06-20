@@ -13,8 +13,10 @@
   </div>
   <p>{{ post.title }}</p>
   <div class="detail-meta">
-    <p class="post_relative-time">Created {{ post.created_at|naturaltime }}. Last updated at
-      {{ post.updated_at|naturaltime }}</p>
+    <p class="post_relative-time">
+      Created {{ post.created_at|naturaltime }}. Last updated at {{
+      post.updated_at|naturaltime }}
+    </p>
   </div>
 
   {% if user.is_authenticated and user.id == post.user.id %}
@@ -25,20 +27,21 @@
   {% endif %}
 </div>
 
-
-
 <div class="comment-section">
-
   {% if user.is_authenticated %}
   <form method="post" action="{% url 'comment_create' post.id %}">
     {% csrf_token %}
-    <textarea name="content" rows="4" cols="50" placeholder="Have any thoughts on this post?"></textarea>
+    <textarea
+      name="content"
+      rows="4"
+      cols="50"
+      placeholder="Have any thoughts on this post?"
+      class="grey lighten-2"
+    ></textarea>
     <br />
     <button type="submit">Submit</button>
   </form>
-  {% endif %}
-
-  {% for comment in post.comment_set.all %}
+  {% endif %} {% for comment in post.comment_set.all %}
 
   <a href="{% url 'detail' post.id %}">
     <div class="comment">
@@ -57,25 +60,24 @@
   </a>
   <div class="action-bar">
     {% if user.is_authenticated and user.id == post.user.id %}
-    <a href="{% url 'comment_create' post.id %}" class="post-action"><i class="fa-solid fa-comment"></i></a>
+    <a href="{% url 'comment_create' post.id %}" class="post-action"
+      ><i class="fa-solid fa-comment"></i
+    ></a>
     <i class="fa-solid fa-heart"></i>
     <i class="fa-solid fa-pen-to-square"></i>
     <i class="fa-solid fa-trash"></i>
     {% elif user.is_authenticated %}
     <i class="fa-solid fa-comment"></i>
     <i class="fa-solid fa-heart"></i>
-    <i class="fa-solid fa-pen-to-square" style="color: var(--hr-color);"></i>
-    <i class="fa-solid fa-trash" style="color: var(--hr-color);"></i>
+    <i class="fa-solid fa-pen-to-square" style="color: var(--hr-color)"></i>
+    <i class="fa-solid fa-trash" style="color: var(--hr-color)"></i>
     {% endif %}
   </div>
-  <hr>
+  <hr />
   {% endfor %}
-
 </div>
 
 {% endblock %}
-
-
 
 <!-- <div class="action-bar">
   {% if user.is_authenticated and user.id == post.user.id %}
