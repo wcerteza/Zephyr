@@ -112,3 +112,9 @@ def post_add_attachment(request, post_id):
             print("An error occurred uploading file to S3")
             print(e)
     return redirect("detail", post_id=post_id)
+
+
+@login_required
+def user_profile(request):
+    posts = Post.objects.filter(user=request.user)
+    return render(request, "user/user_profile.html", {"posts": posts})

@@ -1,0 +1,19 @@
+{% extends 'posts_base.html' %} {% load static %} {% load humanize %} {% block content %}
+
+{% for post in posts %}
+<div class="post">
+  <div class="post-info">
+    <p class="post_relative-time">{{ post.updated_at|naturaltime }}</p>
+    <div class="user_info">
+      <div class="user-avatar"></div>
+      <div class="user-names">
+        <span class="username">{{ post.user }}</span>
+        <span class="displayname">{{ post.user.email }}</span>
+      </div>
+    </div>
+  </div>
+  <p>{{ post.title }}</p>
+</div>
+{% endfor %}
+
+{% endblock %}
