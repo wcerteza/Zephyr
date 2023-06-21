@@ -55,6 +55,12 @@ ul {
   flex-direction: column;
 }
 
+.card-action {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0px;
+}
+
 .user-card {
   display: flex;
   justify-content: flex-start;
@@ -442,4 +448,20 @@ a {
   width: 170px;
   align-self: center;
   justify-self: flex-start;
+}
+
+#attach-form {
+  display: flex;
+}
+
+#attach-btn {
+background-color: transparent;
+border: none;
+color: white;
+}
+
+.post-image {
+  padding: 0;
+  width: 100%;
+  height: auto;
 }

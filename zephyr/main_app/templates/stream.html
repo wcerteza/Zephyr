@@ -22,6 +22,9 @@
   </div>
   <a href="{% url 'detail' post.id %}">
     <p>{{ post.title }}</p>
+    {% for attachment in post.attachments %}
+    <img class="responsive-img card-panel" src="{{ attachment.url }}">
+    {% endfor %}
   </a>
 </div>
 

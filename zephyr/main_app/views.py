@@ -2,7 +2,7 @@ import os
 import uuid
 import boto3
 from django.shortcuts import render, redirect
-from .models import Post, Comment, Attachment  # , Like
+from .models import Post, Comment, Attachment
 from django.contrib.auth.models import User
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
@@ -11,12 +11,17 @@ from django.urls import reverse_lazy
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+from threading import Timer
 
 
 def stream(request):
     posts = Post.objects.all()
     posts_form = PostForm()
     users = User.objects.all()
+
+    for post in posts:
+        post.attachments = Attachment.objects.filter(post=post)
+
     return render(
         request,
         "stream.html",
@@ -46,6 +51,7 @@ class PostCreate(CreateView):
 def posts_detail(request, post_id):
     post = Post.objects.get(id=post_id)
     posts_form = PostForm()
+    attachments = Attachment.objects.filter(post_id=post_id)
     title = f'{post.user}:"{post.title}"'
     return render(
         request,
@@ -54,6 +60,7 @@ def posts_detail(request, post_id):
             "post": post,
             "title": title,
             "posts_form": posts_form,
+            "attachments": attachments,
         },
     )
 
@@ -89,6 +96,7 @@ def signup(request):
 def comment_create(request, post_id):
     post = Post.objects.get(id=post_id)
     form = CommentForm(request.POST)
+    attachments = Attachment.objects.filter(post_id=post_id)
 
     if form.is_valid():
         comment = form.save(commit=False)
@@ -100,25 +108,32 @@ def comment_create(request, post_id):
     return render(
         request,
         "posts/detail.html",
-        {"post": post, "form": form, "comment": comment},
+        {"post": post, "form": form, "comment": comment, "attachment": attachments},
     )
 
 
+@login_required
 def post_add_attachment(request, post_id):
-    attachment_file = request.FILES.get("photo-file", None)
+    # photo-file will be the "name" attribute on the <input type="file">
+    attachment_file = request.FILES.get("attachment-file", None)
     if attachment_file:
         s3 = boto3.client("s3")
+        # need a unique "key" for S3 / needs image file extension too
         key = (
             uuid.uuid4().hex[:6]
-            + attachment_file_file.name[attachment_file_file.name.rfind(".") :]
+            + attachment_file.name[attachment_file.name.rfind(".") :]
         )
+        # just in case something goes wrong
         try:
             bucket = os.environ["S3_BUCKET"]
-            s3.upload_fileobj(photo_file, bucket, key)
+            s3.upload_fileobj(attachment_file, bucket, key)
+            # build the full url string
             url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
-            Attachment.objects.create(url=url, post_id=[post_id])
+            # we can assign to cat_id or cat (if you have a cat object)
+            Attachment.objects.create(url=url, post_id=post_id, user_id=request.user.id)
         except Exception as e:
             print("An error occurred uploading file to S3")
+            print(os.environ["S3_BASE_URL"])
             print(e)
     return redirect("detail", post_id=post_id)
 
