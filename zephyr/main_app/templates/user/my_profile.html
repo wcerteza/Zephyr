@@ -34,19 +34,19 @@
   </div>
 
   <div id="test2" class="col s12">
-    {% for post in posts %}
+    {% for like in likes %}
     <div class="post">
       <div class="post-info">
-        <p class="post_relative-time">{{ post.updated_at|naturaltime }}</p>
+        <p class="post_relative-time">{{ like.updated_at|naturaltime }}</p>
         <div class="user_info">
           <div class="user-avatar"></div>
           <div class="user-names">
-            <span class="username">{{ post.user }}</span>
-            <span class="displayname">{{ post.user.email }}</span>
+            <span class="username">{{ like.user }}</span>
+            <span class="displayname">{{ like.user.email }}</span>
           </div>
         </div>
       </div>
-      <p>{{ post.title }}</p>
+      <p>{{ like.title }}</p>
     </div>
     {% endfor %}
   </div>

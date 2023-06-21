@@ -2,7 +2,7 @@ import os
 import uuid
 import boto3
 from django.shortcuts import render, redirect
-from .models import Post, Comment, Attachment, Like
+from .models import Post, Comment, Attachment#, Like
 from django.contrib.auth.models import User
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
@@ -131,34 +131,38 @@ def like_post(request):
 
         if user in post_obj.liked.all():
             post_obj.liked.remove(user)
+            # post_obj.liked.
         else:
             post_obj.liked.add(user)
 
-        like, created = Like.objects.get_or_create(user=user, post_id=post_id)
+        # like, created = Like.objects.get_or_create(user=user, post_id=post_id)
 
-        if not created:
-            if like.value == "Like":
-                like.value = "Unlike"
-            else:
-                like.value = "Like"
+        # if not created:
+        #     if like.value == "Like":
+        #         like.value = "Unlike"
+        #     else:
+        #         like.value = "Like"
 
-        like.save()
+        # like.save()
     return redirect("/")
 
-
+global likes
 def user_profile(request, user_id):
     if request.user.id == user_id:
         posts = Post.objects.filter(user=request.user)
-        return render(request, "user/my_profile.html", {"posts": posts})
+        likes = Post.liked.filter(liked=request.user)
+        return render(request, "user/my_profile.html", {"posts": posts, "likes": likes})
     else:
         posts = Post.objects.filter(user=user_id)
-        return render(
-            request, "user/user_profile.html", {"posts": posts, "user": request.user}
-        )
+        likes = Post.liked.filter(liked=user_id)
+        return render(request, "user/user_profile.html", {"posts": posts, "user": request.user, "likes": likes})
+
 
 
 @login_required
 def my_profile(request):
     print(request.user)
     posts = Post.objects.filter(user=request.user)
-    return render(request, "user/my_profile.html", {"posts": posts})
+    likes = Post.objects.filter(liked=request.user)
+    return render(request, "user/my_profile.html", {"posts": posts, "likes": likes })
+
