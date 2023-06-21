@@ -57,6 +57,8 @@
           <div>Login</div>
         </a>
         {% endif %}
+        <p>Login to follow profiles or hashtags, favourite, share and reply to posts. You can also interact from your
+          account on a different server.</p>
       </div>
       <div class="col l6 blue-grey darken-2" id="stream">
         {% block content %} {% endblock %}
@@ -67,7 +69,9 @@
           <a href="{% url 'stream' %}">
             <li><i class="fa-solid fa-house" style="margin-right: 0.5em;"></i>Home</li>
           </a>
-          <li><i class="fa-solid fa-hashtag" style="margin-right: 0.5em;"></i>About</li>
+          <a href="{% url 'about' %}">
+            <li><i class="fa-solid fa-hashtag" style="margin-right: 0.5em;"></i>About</li>
+          </a>
           <a href="{% url 'profile'%}">
             <li><i class="fa-solid fa-user" style="margin-right: 0.5em;"></i>Profile</li>
           </a>

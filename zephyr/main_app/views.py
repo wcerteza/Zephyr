@@ -26,6 +26,10 @@ def stream(request):
     )
 
 
+def about(request):
+    return render(request, "about.html", {"title": "Decentralized Wonderland"})
+
+
 class PostCreate(CreateView):
     model = Post
     fields = ["title", "content"]
