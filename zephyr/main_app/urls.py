@@ -4,6 +4,7 @@ from . import views
 urlpatterns = [
     # Stream
     path("", views.stream, name="stream"),
+    path("about/", views.about, name="about"),
     # Posts
     path("create/", views.PostCreate.as_view(), name="post_create"),
     path("posts/<int:post_id>/", views.posts_detail, name="detail"),
