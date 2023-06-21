@@ -20,10 +20,11 @@ urlpatterns = [
     ),
     # Attachments
     path(
-        "posts/<int:post_id/add_attachment",
+        "posts/<int:post_id>/add_attachment",
         views.post_add_attachment,
         name="post_add_attachment",
     ),
     path("like/", views.like_post, name="like_post"),
-    path("profile/", views.user_profile, name="profile"),
+    path("my_profile/", views.my_profile, name="my_profile"),
+    path("<int:user_id>/user/", views.user_profile, name="user_profile"),
 ]

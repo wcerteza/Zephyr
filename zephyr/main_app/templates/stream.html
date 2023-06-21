@@ -12,9 +12,12 @@
       <div class="user_info">
         <div class="user-avatar"></div>
         <div class="user-names">
-          <span class="username">{{ post.user }}</span>
+          <a href="{% url 'user_profile' post.user.id %}">
+            <span class="username">{{ post.user }}</span>
+          </a>
           <span class="displayname">{{ post.user.email }}</span>
         </div>
+
       </div>
     </div>
     <p>{{ post.title }}</p>

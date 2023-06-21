@@ -3,6 +3,7 @@ import uuid
 import boto3
 from django.shortcuts import render, redirect
 from .models import Post, Comment, Attachment, Like
+from django.contrib.auth.models import User
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from .forms import PostForm, CustomUserCreationForm, CommentForm
@@ -15,11 +16,13 @@ from django.contrib.auth.decorators import login_required
 def stream(request):
     posts = Post.objects.all()
     posts_form = PostForm()
+    users = User.objects.all()
     return render(
         request,
         "stream.html",
         {
             "posts": posts,
+            "user": users,
             "title": "Welcome To The Stream | Zephyr",
             "posts_form": posts_form,
         },
@@ -141,7 +144,13 @@ def like_post(request):
     return redirect("/")
 
 
-@login_required
-def user_profile(request):
+def user_profile(request, user_id):
     posts = Post.objects.filter(user=request.user)
-    return render(request, "user/user_profile.html", {"posts": posts})
+    user = User.objects.get(id=user_id)
+    return render(request, "user/user_profile.html", {"posts": posts, "user": user})
+
+
+@login_required
+def my_profile(request):
+    posts = Post.objects.filter(user=request.user)
+    return render(request, "user/my_profile.html", {"posts": posts})
