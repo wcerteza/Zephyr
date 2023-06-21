@@ -75,12 +75,14 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
+            print(user)
             return redirect("/")
         else:
             error_message = "Invalid signup, please try again!"
     else:
         form = CustomUserCreationForm()
     context = {"form": form, "error_message": error_message}
+    print(user)
     return render(request, "registration/signup.html", context)
 
 
@@ -152,5 +154,6 @@ def user_profile(request, user_id):
 
 @login_required
 def my_profile(request):
+    print(request.user)
     posts = Post.objects.filter(user=request.user)
     return render(request, "user/my_profile.html", {"posts": posts})
