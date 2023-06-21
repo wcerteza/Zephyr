@@ -1,1 +1,99 @@
-<h1>this is a test</h1>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body id="about_page">
+    <div id="about_container">
+      <img
+        src="https://i.postimg.cc/4x12v2cB/triangle-top.png"
+        id="triangle1"
+      />
+      <img
+        src="https://i.postimg.cc/WpQyskj6/triangle-left.png"
+        id="triangle2"
+      />
+      <img src="https://i.postimg.cc/MZc4kDkp/circle.png" id="circle" />
+      <nav id="about_nav">
+        <img
+          src="{% static 'images/Zephyr-Web.png' %}"
+          class="responsive-img"
+          id="logo_about"
+        />
+        <!-- <img src="images/ncbit.png" alt="" id="logo"> -->
+        <ul id="about_ul">
+          <li><a href="{% url 'stream' %}">Stream</a></li>
+          <li><a href="{% url 'login' %}">Login</a></li>
+        </ul>
+        <a href="{% url 'signup' %}" id="btn">Create Account</a>
+      </nav>
+      <div id="row">
+        <div id="col-1">
+          <img src="https://i.postimg.cc/15wjX33x/man.png" />
+          <img src="https://i.postimg.cc/2SYXZN11/elements.png" id="elements" />
+        </div>
+        <div id="col-2">
+          <h1>
+            Social<br />
+            <span id="about_span">networking</span> that's not for sale.
+          </h1>
+          <p>
+            Your home feed should be filled with what matters to you most, not
+            what a corporation thinks you should see. Radically different social
+            media, back in the hands of the people.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div id="about2">
+      <div id="about_content">
+        <div id="copy">
+          <h1>
+            Enhanced profile page with comprehensive features for sorting posts,
+            likes, and uploads.
+          </h1>
+        </div>
+        <div id="marketing_img">
+          <img src="../static/images/image1.jpg" alt="social" id="social_img" />
+        </div>
+      </div>
+    </div>
+    <div id="about3">
+      <div id="about_content">
+        <h1>
+          Streamlined account creation and login functionality, ensuring a
+          smooth user experience while prioritizing data security and privacy.
+        </h1>
+        <img src="../static/images/login.png" alt="login" id="login_img" />
+      </div>
+    </div>
+
+    <div id="about4">
+      <div id="about_content">
+        <h1>
+          Empowering users to connect and collaborate with like-minded
+          individuals, fostering meaningful relationships and opportunities.
+        </h1>
+        <img src="../static/images/connect.jpg" alt="login" id="connect" />
+      </div>
+    </div>
+    <footer id="about_foot">
+      <img
+        src="{% static 'images/Zephyr-Web.png' %}"
+        class="responsive-img"
+        id="logo_about"
+      />
+    </footer>
+  </body>
+</html>
