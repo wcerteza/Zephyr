@@ -12,6 +12,9 @@
     </div>
   </div>
   <p>{{ post.title }}</p>
+  {% for attachment in attachments %}
+  <img id="post-image" src="{{attachment.url}}">
+  {% endfor %}
   <div class="detail-meta">
     <p class="post_relative-time">
       Created {{ post.created_at|naturaltime }}. Last updated at {{ post.updated_at|naturaltime }}
@@ -22,10 +25,19 @@
   <div class="card-action">
     <a href="{% url 'posts_update' post.id %}"><i class="fa-solid fa-pen-to-square"></i></a>
     <a href="{% url 'posts_delete' post.id %}"><i class="fa-solid fa-trash"></i></a>
-    <a href="{% url 'post_add_attachment' post.id %}"><i class="fa-solid fa-paperclip"></i></a>
+    {% if post.attachment_set.count < 1 %} <form action="{% url 'post_add_attachment' post.id %}"
+      enctype="multipart/form-data" method="POST" id="attach-form">
+      {% csrf_token %}
+      <input type="file" name="attachment-file" />
+      <br /><br />
+      <button type="submit" id="attach-btn"><i class="fa-solid fa-paperclip"></i></button>
+      </form>
+      {% endif %}
   </div>
   {% endif %}
 </div>
+
+
 
 <div class="comment-section">
   {% if user.is_authenticated %}
