@@ -22,7 +22,7 @@ def stream(request):
         "stream.html",
         {
             "posts": posts,
-            "user": users,
+            "users": users,
             "title": "Welcome To The Stream | Zephyr",
             "posts_form": posts_form,
         },
@@ -147,9 +147,14 @@ def like_post(request):
 
 
 def user_profile(request, user_id):
-    posts = Post.objects.filter(user=request.user)
-    user = User.objects.get(id=user_id)
-    return render(request, "user/user_profile.html", {"posts": posts, "user": user})
+    if request.user.id == user_id:
+        posts = Post.objects.filter(user=request.user)
+        return render(request, "user/my_profile.html", {"posts": posts})
+    else:
+        posts = Post.objects.filter(user=user_id)
+        return render(
+            request, "user/user_profile.html", {"posts": posts, "user": request.user}
+        )
 
 
 @login_required
