@@ -8,6 +8,10 @@
   --comments-section-bg-color: #37474f;
 }
 
+::placeholder {
+  color: black;
+}
+
 body {
   display: flex;
   min-height: 100vh;
@@ -22,8 +26,15 @@ body {
   top: 0px;
 }
 
+#tuna {
+  display: flex !important;
+  flex-direction: row !important;
+  overflow: hidden;
+}
+
 #stream {
   padding: 0px;
+  overflow: hidden;
 }
 
 .row {
