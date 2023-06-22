@@ -1,9 +1,9 @@
-{% extends 'posts_base.html' %} {% load static %} {% load humanize %} {% block content %}
+{% extends 'posts_base.html' %} {% load static %} {% load humanize %}
+<!-- help -->
+{% block content %}
 
 <div class="tunafish">
-  <h1>tunafish sandwich
-
-  </h1>
+  <h1>tunafish sandwich</h1>
 </div>
 
 <div class="row">
@@ -21,7 +21,12 @@
       <div class="post-info">
         <p class="post_relative-time">{{ post.updated_at|naturaltime }}</p>
         <div class="user_info">
-          <div class="user-avatar"></div>
+          <div class="user-avatar">
+            <img
+              src="https://api.dicebear.com/6.x/pixel-art/svg?seed={{post.user}}"
+              alt=""
+            />
+          </div>
           <div class="user-names">
             <span class="username">{{ post.user }}</span>
             <span class="displayname">{{ post.user.email }}</span>
@@ -39,7 +44,12 @@
       <div class="post-info">
         <p class="post_relative-time">{{ like.updated_at|naturaltime }}</p>
         <div class="user_info">
-          <div class="user-avatar"></div>
+          <div class="user-avatar">
+            <img
+              src="https://api.dicebear.com/6.x/pixel-art/svg?seed={{like.user}}"
+              alt=""
+            />
+          </div>
           <div class="user-names">
             <span class="username">{{ like.user }}</span>
             <span class="displayname">{{ like.user.email }}</span>
@@ -53,11 +63,10 @@
 </div>
 
 <script>
-  M.AutoInit();
+  M.AutoInit()
   document.ready(function () {
-    ('.tabs').tabs();
-  });
+    '.tabs'.tabs()
+  })
 </script>
-
 
 {% endblock %}

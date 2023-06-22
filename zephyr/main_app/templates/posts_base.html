@@ -23,7 +23,12 @@
         <hr />
         {% if user.is_authenticated %}
         <div class="user_info">
-          <div class="user-avatar"></div>
+          <div class="user-avatar">
+            <img
+          src="https://api.dicebear.com/6.x/pixel-art/svg?seed={{user.username}}"
+          alt=""
+        />
+          </div>
           <div class="user-names">
             <span class="username">{{ user.username }}</span>
             <span class="displayname">{{ user.email }}</span>

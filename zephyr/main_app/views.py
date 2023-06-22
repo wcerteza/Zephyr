@@ -18,7 +18,7 @@ def stream(request):
     posts = Post.objects.all()
     posts_form = PostForm()
     users = User.objects.all()
-
+    image_url = "https://api.dicebear.com/6.x/pixel-art/svg?seed=Garfield"
     for post in posts:
         post.attachments = Attachment.objects.filter(post=post)
 
@@ -30,6 +30,7 @@ def stream(request):
             "users": users,
             "title": "Welcome To The Stream | Zephyr",
             "posts_form": posts_form,
+
         },
     )
 
@@ -89,7 +90,7 @@ def signup(request):
     else:
         form = CustomUserCreationForm()
     context = {"form": form, "error_message": error_message}
-    print(user)
+    # print(user)
     return render(request, "registration/signup.html", context)
 
 
@@ -105,10 +106,9 @@ def comment_create(request, post_id):
         comment.save()
         form = CommentForm()
 
-    return render(
-        request,
-        "posts/detail.html",
-        {"post": post, "form": form, "comment": comment, "attachment": attachments},
+    return redirect(
+        "detail",
+        post_id=post.id
     )
 
 
