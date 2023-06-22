@@ -5,10 +5,7 @@
     <p class="post_relative-time">{{ post.updated_at|naturaltime }}</p>
     <div class="user_info">
       <div class="user-avatar">
-        <img
-          src="https://api.dicebear.com/6.x/pixel-art/svg?seed={{post.user}}"
-          alt=""
-        />
+        <img src="https://api.dicebear.com/6.x/pixel-art/svg?seed={{post.user}}" alt="" />
       </div>
       <div class="user-names">
         <span class="username">{{ post.user }}</span>
@@ -18,7 +15,7 @@
   </div>
   <p>{{ post.title }}</p>
   {% for attachment in attachments %}
-  <img id="post-image" src="{{attachment.url}}" />
+  <img id="post-image" src="{{attachment.url}}" style="width: 100%;" />
   {% endfor %}
   <div class="detail-meta">
     <p class="post_relative-time">
@@ -29,27 +26,18 @@
 
   {% if user.is_authenticated and user.id == post.user.id %}
   <div class="card-action">
-    <a href="{% url 'posts_update' post.id %}"
-      ><i class="fa-solid fa-pen-to-square"></i
-    ></a>
-    <a href="{% url 'posts_delete' post.id %}"
-      ><i class="fa-solid fa-trash"></i
-    ></a>
-    {% if post.attachment_set.count < 1 %}
-    <form
-      action="{% url 'post_add_attachment' post.id %}"
-      enctype="multipart/form-data"
-      method="POST"
-      id="attach-form"
-    >
+    <a href="{% url 'posts_update' post.id %}"><i class="fa-solid fa-pen-to-square"></i></a>
+    <a href="{% url 'posts_delete' post.id %}"><i class="fa-solid fa-trash"></i></a>
+    {% if post.attachment_set.count < 1 %} <form action="{% url 'post_add_attachment' post.id %}"
+      enctype="multipart/form-data" method="POST" id="attach-form">
       {% csrf_token %}
       <input type="file" name="attachment-file" />
       <br /><br />
       <button type="submit" id="attach-btn">
         <i class="fa-solid fa-paperclip"></i>
       </button>
-    </form>
-    {% endif %}
+      </form>
+      {% endif %}
   </div>
   {% endif %}
 </div>
@@ -58,13 +46,8 @@
   {% if user.is_authenticated %}
   <form method="post" action="{% url 'comment_create' post.id %}">
     {% csrf_token %}
-    <textarea
-      name="content"
-      rows="4"
-      cols="50"
-      placeholder="Have any thoughts on this post?"
-      class="grey lighten-2"
-    ></textarea>
+    <textarea name="content" rows="4" cols="50" placeholder="Have any thoughts on this post?"
+      class="grey lighten-2"></textarea>
     <br />
     <button type="submit">Submit</button>
   </form>
@@ -76,10 +59,7 @@
         <p class="post_relative-time">{{ comment.created_at|naturaltime }}</p>
         <div class="user_info">
           <div class="user-avatar">
-            <img
-              src="https://api.dicebear.com/6.x/pixel-art/svg?seed={{comment.user}}"
-              alt=""
-            />
+            <img src="https://api.dicebear.com/6.x/pixel-art/svg?seed={{comment.user}}" alt="" />
           </div>
           <div class="user-names">
             <span class="username">{{ comment.user }}</span>
@@ -92,9 +72,7 @@
   </a>
   <div class="action-bar">
     {% if user.is_authenticated and user.id == post.user.id %}
-    <a href="{% url 'comment_create' post.id %}" class="post-action"
-      ><i class="fa-solid fa-comment"></i
-    ></a>
+    <a href="{% url 'comment_create' post.id %}" class="post-action"><i class="fa-solid fa-comment"></i></a>
     <i class="fa-solid fa-heart"></i>
     <i class="fa-solid fa-pen-to-square"></i>
     <i class="fa-solid fa-trash"></i>

@@ -1,11 +1,12 @@
 :root {
   font-family: 'Manrope', sans-serif;
-  --main-bg-color: #263238;
+  --main-bg-color: #282C37;
   --stream-bg-color: #455a64;
   --main-font-color: white;
   --sec-font-color: rgba(255, 255, 255, 0.4);
   --hr-color: rgba(255, 255, 255, 0.2);
   --comments-section-bg-color: #37474f;
+  --zephyr-green: #00E2A5;
 }
 
 ::placeholder {
@@ -21,9 +22,17 @@ body {
 }
 
 #sticky-left, #sticky-right {
-  position: -webkit-sticky;
   position: sticky;
   top: 0px;
+  height: 100vh;
+}
+
+.sticky-right-nav {
+  margin: 6px 0px;
+}
+
+.sticky-right-nav .active {
+  color: var(--zephyr-green);
 }
 
 #tuna {
@@ -97,29 +106,29 @@ ul {
 
 .signupbtn {
   font-weight: 600;
-  margin: 10px;
   display: flex;
   justify-content: center;
-  background-color: #4D4DFF;
+  align-items: center;
+  background-color: #00E2A5;
   border-radius: 10px;
-  padding: 10px;
-  width: 250x;
-  height: 45px;
-  color: white
+  width: 290px;
+  height: 38px;
+  color: var(--main-bg-color);
+  margin: 12px 0px;
 }
 
 .loginbtn {
   font-weight: 600;
-  margin: 10px;
   display: flex;
   justify-content: center;
+  align-items: center;
   border: solid;
-  border-color: #4D4DFF;
+  border-color: var(--zephyr-green);
   border-radius: 10px;
-  padding: 10px;
-  width: 250x;
-  height: 45px;
-  color: #4D4DFF
+  padding: 17px 6px;
+  width: 290px;
+  height: 22px;
+  color: var(--zephyr-green);
 }
 
 .post-info {
@@ -464,4 +473,21 @@ color: white;
   padding: 0;
   width: 100%;
   height: auto;
+}
+
+.tiny-nav {
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 13px;
+  bottom: 16px;
+}
+
+.tiny-nav a {
+  color: var(--sec-font-color);
+  margin: 0.3em 0.3em;
+}
+
+.tiny-nav a:hover {
+text-decoration: underline;
 }
