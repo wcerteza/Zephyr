@@ -7,39 +7,45 @@
 </div>
 
 <div class="row">
-    <ul>
-      <div class="tabs row" id="tuna">
-        <li class="tab col s6 teal lighten-2"><a href="#test1">Posts</a></li>
-        <li class="tab col s6"><a class="active" href="#test2">Likes</a></li>
-      </div>
-    </ul>
-    <div id="test1" class="col s12">
-      {% for post in posts %}
-      <div class="post">
-        <div class="post-info">
-          <p class="post_relative-time">{{ post.updated_at|naturaltime }}</p>
-          <div class="user_info">
-            <div class="user-avatar">
-              <img src="https://api.dicebear.com/6.x/pixel-art/svg?seed={{post.user}}" alt=""/>
-            </div>
-            <div class="user-names">
-              <span class="username">{{ post.user }}</span>
-              <span class="displayname">{{ post.user.email }}</span>
-            </div>
+  <ul>
+    <div class="tabs row" id="tuna">
+      <li class="tab col s6 teal lighten-2"><a href="#test1">Posts</a></li>
+      <li class="tab col s6"><a class="active" href="#test2">Likes</a></li>
+    </div>
+  </ul>
+  <div id="test1" class="col s12">
+    {% for post in posts %}
+    <div class="post">
+      <div class="post-info">
+        <p class="post_relative-time">{{ post.updated_at|naturaltime }}</p>
+        <div class="user_info">
+          <div class="user-avatar">
+            <img
+              src="https://api.dicebear.com/6.x/pixel-art/svg?seed={{post.user}}"
+              alt=""
+            />
+          </div>
+          <div class="user-names">
+            <span class="username">{{ post.user }}</span>
+            <span class="displayname">{{ post.user.email }}</span>
           </div>
         </div>
-        <p>{{ post.title }}</p>
       </div>
-      {% endfor %}
+      <p>{{ post.title }}</p>
     </div>
-
+    {% endfor %}
+  </div>
+  <div id="test2" class="col s12">
     {% for like in likes %}
     <div class="post">
       <div class="post-info">
         <p class="post_relative-time">{{ like.updated_at|naturaltime }}</p>
         <div class="user_info">
           <div class="user-avatar">
-            <img src="https://api.dicebear.com/6.x/pixel-art/svg?seed={{like.user}}" alt=""/>
+            <img
+              src="https://api.dicebear.com/6.x/pixel-art/svg?seed={{like.user}}"
+              alt=""
+            />
           </div>
           <div class="user-names">
             <span class="username">{{ like.user }}</span>
@@ -53,11 +59,12 @@
   </div>
 </div>
 
-<script>
-  M.AutoInit()
-  document.ready(function () {
-    '.tabs'.tabs()
-  })
-</script>
+  <script>
+    M.AutoInit()
+    document.ready(function () {
+      '.tabs'.tabs()
+    })
+  </script>
 
-{% endblock %}
+  {% endblock %}
+</div>
