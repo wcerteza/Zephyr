@@ -205,7 +205,8 @@ footer.page-footer {
 .user-avatar {
   width: 46px;
   height: 46px;
-  background-color: aquamarine;
+  background-color: #cfd8dc;
+  border-radius: 5px;
 }
 
 .user_info {
