@@ -15,7 +15,6 @@ class Comment(models.Model):
 
 
 class Post(models.Model):
-    title = models.CharField(max_length=40)
     content = models.TextField(max_length=160)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -25,7 +24,7 @@ class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="posts")
 
     def __str__(self):
-        return f"{self.title}({self.id}) at {self.created_at} {self.user}"
+        return f"{self.content}({self.id}) at {self.created_at} {self.user}"
 
     @property
     def num_likes(self):
