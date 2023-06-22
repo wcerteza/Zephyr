@@ -1,8 +1,29 @@
 {% extends 'accounts_base.html' %} {% load static %} {% block content %}
-<h1>Log In</h1>
-<form action="{% url 'login' %}" method="POST">
-  {% csrf_token %} {{ form.as_p }}
-  <input type="hidden" name="next" value="{{ next }}" />
-  <button type="submit" class="btn">Log In</button>
-</form>
+<p class="red-text">{{error_message}}</p>
+
+<div
+  id="form-container"
+  class="container"
+  style="
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  "
+>
+  <img
+    src="{% static 'images/Zephyr-Logo.png' %}"
+    class="responsive-img"
+    style="width: 30%"
+  />
+  <h3>Login to Your Account</h3>
+  <p style="font-weight: bold">
+    Continue your Zephyr journey by logging in to your existing account.
+  </p>
+  <form id="create-form" action="{% url 'login' %}" method="POST">
+    {% csrf_token %} {{ form.as_p }}
+    <input type="hidden" name="next" value="{{ next }}" />
+    <button type="submit" class="create-user-button">Log In</button>
+  </form>
+</div>
 {% endblock %}

@@ -45,10 +45,6 @@
           </form>
         </div>
 
-
-        <a href="{% url 'logout' %}" class="logoutbtn">
-          <div>Log Out</div>
-        </a>
         {% else %}
 
         <p class="left-align" style="color: var(--sec-font-color); font-size: 13px;">Unlock a personalized experience by
@@ -91,6 +87,11 @@
           </a>
         </ul>
         <hr>
+        {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}" class="logoutbtn">
+          <div>Log Out</div>
+        </a>
+        {% endif %}
       </div>
 
     </div>
