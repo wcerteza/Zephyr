@@ -84,15 +84,15 @@
       </div>
       </a>
       <div class="col l3" id="sticky-right">
-        <ul>
-          <a class="sticky-right-nav" href="{% url 'stream' %}">
-            <li><i class="fa-solid fa-house" style="margin-right: 0.5em;"></i>Home</li>
+        <ul class="right-nav">
+          <a href="{% url 'stream' %}" {% if title == "Welcome To The Stream | Zephyr" %} class="active" {% endif %}>
+            <i class="fa-solid fa-house" style="margin-right: 0.5em;"></i>Home
           </a>
-          <a class="sticky-right-nav" href="{% url 'about' %}">
-            <li><i class="fa-solid fa-hashtag" style="margin-right: 0.5em;"></i>About</li>
+          <a href="{% url 'about' %}">
+            <i class="fa-solid fa-hashtag" style="margin-right: 0.5em;"></i>About
           </a>
-          <a class="sticky-right-nav" href="{% url 'my_profile'%}">
-            <li><i class="fa-solid fa-user" style="margin-right: 0.5em;"></i>Profile</li>
+          <a href="{% url 'my_profile'%}" {% if title == 'Welcome Home' %} class="active" {% endif %}>
+            <i class="fa-solid fa-user" style="margin-right: 0.5em;"></i>Profile
           </a>
         </ul>
         <hr>

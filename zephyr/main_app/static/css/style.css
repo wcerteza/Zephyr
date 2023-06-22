@@ -3,6 +3,7 @@
   --main-bg-color: #282C37;
   --stream-bg-color: #455a64;
   --main-font-color: white;
+  --inactive-nav-color: rgba(255, 255, 255, 0.6);
   --sec-font-color: rgba(255, 255, 255, 0.4);
   --hr-color: rgba(255, 255, 255, 0.2);
   --comments-section-bg-color: #37474f;
@@ -27,11 +28,17 @@ body {
   height: 100vh;
 }
 
-.sticky-right-nav {
-  margin: 6px 0px;
+.right-nav a {
+  margin: 6px 0;
+  color: var(--inactive-nav-color);
+  transition: 0.3s;
 }
 
-.sticky-right-nav .active {
+.right-nav a:hover {
+  color: white;
+}
+
+.right-nav a.active {
   color: var(--zephyr-green);
 }
 
