@@ -36,7 +36,7 @@ def stream(request):
 
 
 def about(request):
-    return render(request, "about.html", {"title": "Decentralized Wonderland"})
+    return render(request, "about.html", {"title": "Decentralized Wonderland | Zephyr"})
 
 
 class PostCreate(CreateView):
@@ -185,4 +185,4 @@ def my_profile(request):
     print(request.user)
     posts = Post.objects.filter(user=request.user)
     likes = Post.objects.filter(liked=request.user)
-    return render(request, "user/my_profile.html", {"posts": posts, "likes": likes})
+    return render(request, "user/my_profile.html", {"posts": posts, "likes": likes, "title": "Welcome Home"})
