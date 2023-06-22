@@ -1,10 +1,23 @@
 {% extends 'posts_base.html' %} {% load static %} {% load humanize %}
 <!-- test -->
 {% block content %}
-
-<div class="tunafish">
-  <h1>peanut butter sandwich</h1>
+<div class="user-loadout">
+  <div class="profile-avatar">
+    <img src="https://api.dicebear.com/6.x/pixel-art/svg?seed={{profile.username}}" alt="" />
+  </div>
+  <div class="user-names">
+    <span class="username">{{ profile.username }}</span>
+    <span class="displayname">{{ profile.email }}</span>
 </div>
+<div class="joined-box">
+  <p class="joined-label">JOINED</p>
+  <p class="joined-date">
+  {{ profile.date_joined|naturalday }}
+</p>
+</div>
+
+</div>
+
 
 <div class="row">
   <ul>
