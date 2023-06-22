@@ -173,10 +173,11 @@ def user_profile(request, user_id):
     else:
         posts = Post.objects.filter(user=user_id)
         likes = Post.objects.filter(liked=user_id)
+        profile = User.objects.get(id=user_id)
         return render(
             request,
             "user/user_profile.html",
-            {"posts": posts, "user": request.user, "likes": likes},
+            {"posts": posts, "likes": likes, "profile": profile},
         )
 
 

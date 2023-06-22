@@ -89,6 +89,7 @@ ul {
 #stream {
   padding: 0px;
   overflow: hidden;
+  min-height: 100vh;
 }
 
 .row {
@@ -577,8 +578,6 @@ a {
 }
 
 .create-user-button {
-  /* display: flex;
-  justify-content: center; */
   font-family: 'Manrope', sans-serif;
   margin-top: 8px;
   width: 50%;
@@ -604,3 +603,59 @@ a {
   border: none;
   border-radius: 4px;
 }
+
+/* my_profile  */
+
+.user-loadout {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  padding-bottom: 0px;
+}
+
+.profile-avatar {
+  width: 90px;
+  height: 90px;
+  background-color: #cfd8dc;
+  border-radius: 5px;
+  margin-bottom: 16px;
+}
+
+.joined-box {
+  background-color: #263238;
+  padding: 8px;
+  border-radius: 5px;
+  margin-top: 8px;
+}
+
+.joined-label, .joined-date {
+  margin: 0px;
+  font-size: 13px;
+}
+
+.joined-label {
+  color: var(--sec-font-color);
+}
+
+.joined-date {
+  font-weight: 600;
+}
+
+.tabs .tab a{
+  color: var(--inactive-nav-color);
+  background-color: #455a64;
+} 
+
+.tabs .tab a:hover {
+  background-color:var(--zephyr-green-hover);
+  color:#000;
+} 
+
+.tabs .tab a.active {
+  background-color: #455a64;
+  color:var(--zephyr-green);
+} 
+
+.tabs .indicator {
+  background-color: var(--zephyr-green);
+} 
