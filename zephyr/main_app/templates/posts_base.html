@@ -25,7 +25,7 @@
         </div>
         <hr />
         {% if user.is_authenticated %}
-        <div class="user_info">
+        <div class="user_info" style="margin-bottom: 16px;">
           <div class="user-avatar">
             <img src="https://api.dicebear.com/6.x/pixel-art/svg?seed={{user.username}}" alt="" />
           </div>
@@ -36,13 +36,12 @@
         </div>
 
         <div>
-          <form action="{% url 'post_create' %}" method="POST">
+          <form action="{% url 'post_create' %}" method="POST" style="display: flex; flex-direction: column;">
             {% csrf_token %}
             <div class="form-group">
-              <label for="id_content">Content:</label>
-              <textarea id="id_content" name="content" class="form-control grey lighten-2"></textarea>
+              <textarea id="id_content" name="content" class="post-form" placeholder="What's on your mind?"></textarea>
             </div>
-            <input type="submit" class="btn" value="Post" />
+            <input type="submit" class="post-button" value="Post" />
           </form>
         </div>
 
