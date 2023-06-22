@@ -15,11 +15,11 @@
   </div>
   <p>{{ post.content }}</p>
   {% for attachment in attachments %}
-  <img id="post-image" src="{{attachment.url}}" style="width: 100%;" />
+  <img id="post-image" src="{{attachment.url}}" style="width: 100%; border-radius: 8px;" />
   {% endfor %}
   <div class="detail-meta">
     <p class="post_relative-time">
-      Created {{ post.created_at|naturaltime }}. Last updated at {{ post.updated_at|naturaltime }}
+      Created {{ post.created_at|naturaltime }}. Last updated at {{post.updated_at|naturaltime }}
     </p>
   </div>
 
