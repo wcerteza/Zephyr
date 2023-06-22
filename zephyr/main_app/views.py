@@ -41,7 +41,7 @@ def about(request):
 
 class PostCreate(CreateView):
     model = Post
-    fields = ["title", "content"]
+    fields = ["content"]
     success_url = reverse_lazy("stream")
 
     def form_valid(self, form):
@@ -53,7 +53,7 @@ def posts_detail(request, post_id):
     post = Post.objects.get(id=post_id)
     posts_form = PostForm()
     attachments = Attachment.objects.filter(post_id=post_id)
-    title = f'{post.user}:"{post.title}"'
+    title = f'{post.user}:"{post.content}"'
     return render(
         request,
         "posts/detail.html",
@@ -68,7 +68,7 @@ def posts_detail(request, post_id):
 
 class PostUpdate(UpdateView):
     model = Post
-    fields = ["title", "content"]
+    fields = [ "content"]
 
 
 class PostDelete(DeleteView):
