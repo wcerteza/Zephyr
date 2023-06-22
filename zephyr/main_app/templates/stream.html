@@ -22,7 +22,7 @@
     </div>
   </div>
   <a href="{% url 'detail' post.id %}">
-    <p>{{ post.title }}</p>
+    <p>{{ post.content }}</p>
     {% for attachment in post.attachments %}
     <img class="post-image" src="{{ attachment.url }}" />
     {% endfor %}
