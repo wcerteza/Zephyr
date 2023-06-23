@@ -33,7 +33,7 @@
       <input type="file" name="attachment-file" />
       <br /><br />
       <button type="submit" id="attach-btn">
-        <i class="fa-solid fa-paperclip"></i>
+        <i class="fa-solid fa-file-import"></i>
       </button>
       </form>
       {% endif %}
@@ -43,12 +43,11 @@
 
 <div class="comment-section">
   {% if user.is_authenticated %}
-  <form method="post" action="{% url 'comment_create' post.id %}">
+  <form class="comment-form" method="post" action="{% url 'comment_create' post.id %}">
     {% csrf_token %}
-    <textarea name="content" rows="4" cols="50" placeholder="Have any thoughts on this post?"
-      class="grey lighten-2"></textarea>
+    <textarea id="comment-text" name="content" rows="4" cols="50" placeholder="Have any thoughts on this post?"></textarea>
     <br />
-    <button type="submit">Submit</button>
+    <button class="comment-button" type="submit"><i class="fa-solid fa-circle-up"></i></button>
   </form>
   {% endif %} {% for comment in post.comment_set.all %}
 
@@ -70,14 +69,9 @@
     </div>
   </a>
   <div class="action-bar">
-    {% if user.is_authenticated and user.id == post.user.id %}
-    <a href="{% url 'comment_create' post.id %}" class="post-action"><i class="fa-solid fa-comment"></i></a>
-    <i class="fa-solid fa-heart"></i>
-    <i class="fa-solid fa-pen-to-square"></i>
-    <i class="fa-solid fa-trash"></i>
-    {% elif user.is_authenticated %}
-    <i class="fa-solid fa-comment"></i>
-    <i class="fa-solid fa-heart"></i>
+    {% if user.is_authenticated %}
+    <i class="fa-solid fa-comment" style="color: var(--hr-color)"></i></i>
+    <i class="fa-solid fa-heart" style="color: var(--hr-color)"></i></i>
     <i class="fa-solid fa-pen-to-square" style="color: var(--hr-color)"></i>
     <i class="fa-solid fa-trash" style="color: var(--hr-color)"></i>
     {% endif %}

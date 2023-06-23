@@ -1,22 +1,61 @@
-{% extends 'forms_base.html' %}
+{% extends 'forms_base.html' %} {% load static %} {% load humanize %}
 
 {% block content %}
 
-{% if object %}
-<h1>Edit <span class="yellow-text">{{ objectpost.content }}</span></h1>
-{% else %}
-<h1>Update Post</h1>
-{% endif %}
+<div
+  id="form-container"
+  class="container"
+  style="
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  "
+>
+<img
+    src="{% static 'images/Zephyr-Logo.png' %}"
+    class="responsive-img"
+    style="width: 30%"
+  />
+  <h3>Made an oopsie?</h3>
+  <p style="font-weight: bold">
+   Edit your post below.
+  </p>
+
+  <div class="post blue-grey darken-3" style="padding: 16px; border-radius: 4px;">
+  <div class="post-info">
+    <p class="post_relative-time">{{ object.updated_at|naturaltime }}</p>
+    <div class="user_info">
+      <div class="user-avatar">
+        <img src="https://api.dicebear.com/6.x/pixel-art/svg?seed={{post.user}}" alt="" />
+      </div>
+      <div class="user-names">
+        <span class="username">{{ object.user }}</span>
+        <span class="displayname">{{ object.user.email }}</span>
+      </div>
+    </div>
+  </div>
+  <p>{{ object.content }}</p>
+  {% for attachment in attachments %}
+  <img id="post-image" src="{{attachment.url}}" style="width: 100%; border-radius: 8px;" />
+  {% endfor %}
+  <div class="detail-meta">
+    <p class="post_relative-time">
+      Created {{ object.created_at|naturaltime }}. Last updated at {{object.updated_at|naturaltime }}
+    </p>
+  </div>
+</div>
 
 
-<form action="" method="POST">
+<form id="edit-form" action="" method="POST">
   <!-- Django requires the following for security purposes -->
   {% csrf_token %}
   <table>
     <!-- Render the inputs inside of <tr>s & <td>s -->
-    {{ form.as_table }}
+    {{ form.as_p }}
   </table>
-  <input type="submit" value="Submit!" class="btn">
+  <input type="submit" value="Submit!" class="delete-button">
+  <a style="margin-top: 8px;" href="{% url 'detail' post.id %}">Cancel</a>
 </form>
 
 {% endblock %}
