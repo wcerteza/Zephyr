@@ -38,15 +38,17 @@ Zephyr is a cutting-edge alternative to traditional online forums, revolutionizi
 
 ### **_Links_**
 
+#### Vist our website here: [Zephyr](https://zephyr1.fly.dev/)
+
 #### [Trello](https://trello.com/b/pyqT9my7/zephyr)
 
 #### [Pitch Deck](https://www.figma.com/file/dhFt9fPjhOFSCzPvjIc49H/Zephyr-Pitch-Deck?type=design&node-id=0%3A1&t=jpPi6djm3mNODYcP-1)
 
+---
+
 ### **_Entity Relationship Diagram_**
 
 ![](images/ERD.png)
-
----
 
 ### **_WireFrame_**
 
@@ -54,7 +56,33 @@ Zephyr is a cutting-edge alternative to traditional online forums, revolutionizi
 ![](images/zephyr2.png)
 ![](images/zephyr3.png)
 
+---
+
 ### **_Completed Website_**
+
+![](images/complete0.jpeg)
+
+#### Comprehensive feature list on our platform's information page.
+
+![](images/complete1.jpeg)
+
+#### Engaging stream page for creating, liking, commenting on, and viewing all posts.
+
+![](images/complete2.jpeg)
+
+#### Personal profile page to view your own profile, liked posts, and created posts. Includes membership date, username, avatar, and user email.
+
+![](images/complete3.jpeg)
+
+#### Individual post display with options to update or delete your own post, or leave a comment on others' posts.
+
+![](images/complete4.jpeg)
+
+#### Update page displaying the entire post you wish to modify, accessible after clicking the update button.
+
+![](images/avatar2.jpeg)
+
+#### Each user has a custom randomily generated avatar, we made this happen using [DiceBear](https://www.dicebear.com/introduction) an HTTP API.
 
 ---
 
@@ -70,14 +98,22 @@ Zephyr is a cutting-edge alternative to traditional online forums, revolutionizi
 
 ### **_Future Goals_**
 
-#### 1. Allow users to upvote or like various posts, providing feedback and promoting quality content.
+#### 1.Implement a private chat feature, allowing individual users to engage in private conversations.
 
-#### 2.Implement a private chat feature, allowing individual users to engage in private conversations.
-
-#### 3. Develop additional features within Zephyrs, such as the ability to create sub-zephyrs or topic-specific communities, providing users with more specialized discussions and content.
+#### 2. Develop additional features within Zephyrs, such as the ability to create sub-zephyrs or topic-specific communities, providing users with more specialized discussions and content.
 
 ---
 
 ### **_Refrences_**
+
+[DiceBear](https://www.dicebear.com/introduction)
+
+[FontAwesome](https://fontawesome.com/)
+
+[About Page](https://postimg.cc/PPf4FhDK)
+
+[About Page Images 2](https://postlmg.cc/SJZGB574)
+
+[CSS animations](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animations/Using_CSS_animations)
 
 ---
