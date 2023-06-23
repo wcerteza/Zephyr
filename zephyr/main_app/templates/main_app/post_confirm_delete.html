@@ -1,13 +1,56 @@
-{% extends 'forms_base.html' %}
+{% extends 'forms_base.html' %} {% load static %} {% load humanize %}
 
 {% block content %}
-<h1>Delete Post?!?!</h1>
 
-<h4>Are you sure you want to delete <span class="red-text">{{ objectpost.content }}</span>?</h4>
+<div
+  id="form-container"
+  class="container"
+  style="
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  "
+>
+<img
+    src="{% static 'images/Zephyr-Logo.png' %}"
+    class="responsive-img"
+    style="width: 30%"
+  />
+  <h3>Nani?</h3>
+  <img class="nani" src="{% static 'images/nani-anime.gif' %}" alt="">
+  <p style="font-weight: bold">
+   Are you sure you want to delete this post?
+  </p>
 
-<form action="" method="POST">
+  <div class="post blue-grey darken-3" style="padding: 16px; border-radius: 4px;">
+  <div class="post-info">
+    <p class="post_relative-time">{{ object.updated_at|naturaltime }}</p>
+    <div class="user_info">
+      <div class="user-avatar">
+        <img src="https://api.dicebear.com/6.x/pixel-art/svg?seed={{post.user}}" alt="" />
+      </div>
+      <div class="user-names">
+        <span class="username">{{ object.user }}</span>
+        <span class="displayname">{{ object.user.email }}</span>
+      </div>
+    </div>
+  </div>
+  <p>{{ object.content }}</p>
+  {% for attachment in attachments %}
+  <img id="post-image" src="{{attachment.url}}" style="width: 100%; border-radius: 8px;" />
+  {% endfor %}
+  <div class="detail-meta">
+    <p class="post_relative-time">
+      Created {{ object.created_at|naturaltime }}. Last updated at {{object.updated_at|naturaltime }}
+    </p>
+  </div>
+</div>
+
+
+<form action="" method="POST" style="display: flex; justify-content: center; align-items: end; margin: 0px 8px;">
   {% csrf_token %}
-  <input type="submit" value="Yes - Delete!" class="btn">
-  <a href="{% url 'detail' post.id %}">Cancel</a>
+  <input type="submit" value="Delete" class="delete-button"> <a style="margin-left: 16px;" href="{% url 'detail' post.id %}">Cancel</a>
 </form>
+</div>
 {% endblock %}

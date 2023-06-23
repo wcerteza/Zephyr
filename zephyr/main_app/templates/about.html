@@ -9,10 +9,13 @@
     <link rel="stylesheet" href="../static/css/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </head>
   <body id="about_page">
     <div id="about_container">
@@ -27,7 +30,7 @@
       <img src="https://i.postimg.cc/MZc4kDkp/circle.png" id="circle" />
       <nav id="about_nav">
         <img
-          src="{% static 'images/Zephyr-Web.png' %}"
+          src="{% static 'images/Zephyr-Logo.png' %}"
           class="responsive-img"
           id="logo_about"
         />
@@ -90,11 +93,11 @@
       </div>
     </div>
     <footer id="about_foot">
-      <img
-        src="{% static 'images/Zephyr-Web.png' %}"
-        class="responsive-img"
-        id="logo_about"
-      />
+      <div class="about-footer-links">
+        <a href="https://github.com/wcerteza/Zephyr"><i class="fa-brands fa-github"></i>&nbsp&nbspGithub</a>
+        <a href="https://trello.com/b/pyqT9my7/zephyr"><i class="fa-brands fa-trello"></i>&nbsp&nbspTrello</a>
+        <a href="https://docs.google.com/document/d/14ibKpQjDCCgWxC1g3jfoOmZ4N07IK8UP1s5ILxoJmb8/edit?usp=sharing"><i class="fa-solid fa-person-chalkboard"></i>&nbsp&nbspThe Pitch</a>
+      </div>
     </footer>
   </body>
 </html>

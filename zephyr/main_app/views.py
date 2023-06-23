@@ -38,7 +38,7 @@ def stream(request):
 def about(request):
     return render(request, "about.html", {"title": "Decentralized Wonderland | Zephyr"})
 
-
+# @login_required
 class PostCreate(CreateView):
     model = Post
     fields = ["content"]
@@ -65,12 +65,12 @@ def posts_detail(request, post_id):
         },
     )
 
-
+# @login_required
 class PostUpdate(UpdateView):
     model = Post
     fields = [ "content"]
 
-
+# @login_required
 class PostDelete(DeleteView):
     model = Post
     success_url = "/"
@@ -93,7 +93,7 @@ def signup(request):
     # print(user)
     return render(request, "registration/signup.html", context)
 
-
+@login_required
 def comment_create(request, post_id):
     post = Post.objects.get(id=post_id)
     form = CommentForm(request.POST)
@@ -114,22 +114,17 @@ def comment_create(request, post_id):
 
 @login_required
 def post_add_attachment(request, post_id):
-    # photo-file will be the "name" attribute on the <input type="file">
     attachment_file = request.FILES.get("attachment-file", None)
     if attachment_file:
         s3 = boto3.client("s3")
-        # need a unique "key" for S3 / needs image file extension too
         key = (
             uuid.uuid4().hex[:6]
             + attachment_file.name[attachment_file.name.rfind(".") :]
         )
-        # just in case something goes wrong
         try:
             bucket = os.environ["S3_BUCKET"]
             s3.upload_fileobj(attachment_file, bucket, key)
-            # build the full url string
             url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
-            # we can assign to cat_id or cat (if you have a cat object)
             Attachment.objects.create(url=url, post_id=post_id, user_id=request.user.id)
         except Exception as e:
             print("An error occurred uploading file to S3")
@@ -137,7 +132,7 @@ def post_add_attachment(request, post_id):
             print(e)
     return redirect("detail", post_id=post_id)
 
-
+@login_required
 def like_post(request):
     user = request.user
     if request.method == "POST":
@@ -146,19 +141,8 @@ def like_post(request):
 
         if user in post_obj.liked.all():
             post_obj.liked.remove(user)
-            # post_obj.liked.
         else:
             post_obj.liked.add(user)
-
-        # like, created = Like.objects.get_or_create(user=user, post_id=post_id)
-
-        # if not created:
-        #     if like.value == "Like":
-        #         like.value = "Unlike"
-        #     else:
-        #         like.value = "Like"
-
-        # like.save()
     return redirect("/")
 
 
