@@ -11,27 +11,32 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-
+from django.core.management.utils import get_random_secret_key
 import environ
+
+env = environ.Env(  # <-- Updated!
+    # set casting, default value
+    DEBUG=(bool, False),
+)
 
 environ.Env()
 environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-# BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+environ.Env.read_env()
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-=$rqf$9o*rhi0oivd*drs)@h%*b3kse$otfjt-i!po9wl$6@m$"
-
+SECRET_KEY = env.str("SECRET_KEY", default=get_random_secret_key())
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env("DEBUG")
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "zephyr1.fly.dev"]
 
+CSRF_TRUSTED_ORIGINS = ["https://zephyr1.fly.dev"]
 
 # Application definition
 
@@ -42,12 +47,14 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
+    "whitenoise.runserver_nostatic",
     "django.contrib.staticfiles",
     "django.contrib.humanize",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -55,6 +62,11 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+STATIC_ROOT = BASE_DIR / "staticfiles"  # <-- Updated!
+
+STATICFILES_STORAGE = (
+    "whitenoise.storage.CompressedManifestStaticFilesStorage"  # <-- Updated!
+)
 
 ROOT_URLCONF = "zephyr.urls"
 
@@ -79,13 +91,17 @@ WSGI_APPLICATION = "zephyr.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
+# settings.py
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "zephyr",
-    }
+    # read os.environ['DATABASE_URL']
+    "default": env.db()  # <-- Updated!
 }
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": "zephyr",
+#     }
+# }
 
 
 # Password validation
